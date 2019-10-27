@@ -2,16 +2,9 @@ package controllers;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.util.ArrayList;
@@ -19,7 +12,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
-import java.io.IOException;
 import twitter4j.Status;
 
 import twitter4j.Twitter;
@@ -52,7 +44,6 @@ public class PersonController {
 	@Path("/testall")
 	@GET
 	public List<TweetEntity> getTweetList() {
-		System.out.println("LefaN");
 		 tweetList = tweetEJB.findTweets();
 	     return tweetList;
 	}
@@ -65,15 +56,10 @@ public class PersonController {
 		// l = tweetEJB.findTweets();
 		return tweetList;
 	}
-	
-	public String getName() {
-		return "Lefa";
-	}
 	public Tweet getTweet() {
 		return tweet;
 	}
 	public void setTweet(Tweet tweet) {
-		System.out.println("Lefa " + tweet);
 		this.tweet = tweet;
 	}
 	public String gotoAdd() {
@@ -90,14 +76,6 @@ public class PersonController {
 		/**
 		 * if not using properties file, we can set access token by following way
 		 */
-//		ConfigurationBuilder cb = new ConfigurationBuilder();
-//		cb.setDebugEnabled(true)
-//		  .setOAuthConsumerKey("//TODO")
-//		  .setOAuthConsumerSecret("//TODO")
-//		  .setOAuthAccessToken("//TODO")
-//		  .setOAuthAccessTokenSecret("//TODO");
-//		TwitterFactory tf = new TwitterFactory(cb.build());
-//		Twitter twitter = tf.getSingleton();
 		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 	    cb.setDebugEnabled(true)
@@ -107,16 +85,13 @@ public class PersonController {
 	      .setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
 	    TwitterFactory tf = new TwitterFactory(cb.build());
 	    Twitter twitter = tf.getInstance();
-	    
 		return twitter;
 		
 	}
 	
-	public String createTweet() throws TwitterException {
+	public String sendTweet() throws TwitterException {
 	    Twitter twitter = getTwitterinstance();
-	    System.out.println(tweet.getEntity());
-	    Status status = twitter.updateStatus(tweet.getEntity().getMessage());
-	    System.out.println(status.getText());
+	    Status status = twitter.updateStatus(tweet.getEntity().getTweetBody());
 	    tweetEJB.addNew(tweet.getEntity());
 	    return status.getText();
 	}
@@ -125,22 +100,7 @@ public class PersonController {
 	public Response createTweetAPI(Tweet twet) throws TwitterException {
 	    Twitter twitter = getTwitterinstance();
 	    
-	    twitter.updateStatus(twet.getEntity().getMessage());
+	    twitter.updateStatus(twet.getEntity().getTweetBody());
 	    return Response.ok().status(200).entity("Tweet sent").build(); 
-	}
-	 
-	public void start() throws TwitterException, IOException {
-		    
-		    ConfigurationBuilder cb = new ConfigurationBuilder();
-		    cb.setDebugEnabled(true)
-		      .setOAuthConsumerKey(CONSUMER_KEY)
-		      .setOAuthConsumerSecret(CONSUMER_KEY_SECRET)
-		      .setOAuthAccessToken(ACCESS_TOKEN)
-		      .setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
-		    TwitterFactory tf = new TwitterFactory(cb.build());
-		    Twitter twitter = tf.getInstance();
-		    
-		    System.out.println("Lefa" + twitter);
-		 
 	}
 }

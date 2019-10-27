@@ -15,13 +15,13 @@ import entities.TweetEntity;
 public class Tweet  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String message;
+	private String TweetBody;
 	
-	public String getMessage() {
-		return message;
+	public String getTweetBody() {
+		return TweetBody;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setTweetBody(String TweetBody) {
+		this.TweetBody = TweetBody;
 	}
 	
 	public TweetEntity getEntity()
@@ -32,9 +32,9 @@ public class Tweet  implements Serializable {
 	     System.out.println("Time in Milliseconds: " + time);
 	     
 	     Timestamp ts = new Timestamp(time);
-		 System.out.println("Message :" + message);
+		 System.out.println("Message :" + TweetBody);
 		TweetEntity tweetEntity = new TweetEntity();
-		tweetEntity.setMessage(message);
+		tweetEntity.setTweetBody(TweetBody);
 		tweetEntity.setTimestamp(ts);
 		return tweetEntity;
 	}

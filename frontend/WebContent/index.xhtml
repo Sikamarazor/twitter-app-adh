@@ -20,13 +20,13 @@
                     <div class="form-group">
                         <h:outputLabel value="Tweet message" style="color:black" styleClass="control-label col-sm-12" />
                         <div class="col-md-12">
-                            <h:inputTextarea value="#{personcontroller.tweet.message}" styleClass="form-control" cols="30" rows="10" />
+                            <h:inputTextarea value="#{personcontroller.tweet.tweetBody}" styleClass="form-control" cols="30" rows="10" />
                         </div>
                     </div>
                     <div class="form-group">
 	                    <div class="row">
 	                    	<div class="col-sm-offset-3">
-	                            <h:commandButton value="Post tweet" action="#{personcontroller.createTweet()}" styleClass="btn btn-info" />
+	                            <h:commandButton value="Post tweet" action="#{personcontroller.sendTweet()}" styleClass="btn btn-info" />
 	                        </div>
 	                        <br/>
 	                        <div class="col-sm-offset-3">

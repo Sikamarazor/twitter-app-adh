@@ -7,20 +7,20 @@ import javax.persistence.Id;
 import java.util.Date;
 import java.sql.Timestamp;
 
-@Entity(name="tweet_tbl")
+@Entity(name="twitter_tbl")
 public class TweetEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO) 
-	private Long id;
+	private Long TweetID;
 	
-	private String message;
+	private String TweetBody;
 	private Timestamp timestamp;
 	
-	public String getMessage() {
-		return message;
+	public String getTweetBody() {
+		return TweetBody;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setTweetBody(String TweetBody) {
+		this.TweetBody = TweetBody;
 	}
 	public Timestamp getTimestamp() {
 		return timestamp;

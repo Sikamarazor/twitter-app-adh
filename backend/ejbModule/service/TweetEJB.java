@@ -22,12 +22,12 @@ public class TweetEJB {
     public void addNew(TweetEntity tweetEntity)
     {
     	System.out.println("============================");
-    	System.out.println(tweetEntity.getMessage());
+    	System.out.println(tweetEntity.getTweetBody());
     	em.persist(tweetEntity);
     	System.out.println("============================");
     }
     public List<TweetEntity> findTweets() {
-    	List<TweetEntity> tweet = em.createQuery("Select e from  tweet_tbl e"
+    	List<TweetEntity> tweet = em.createQuery("Select e from  twitter_tbl e"
     			,TweetEntity.class).getResultList();
     	return tweet;
     }
