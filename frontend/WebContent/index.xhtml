@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+	
+    <h:head>
+        <title>Twitter poster</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" target="head" />
+    </h:head>
+    <h:body style="color:white">
+    	<div class="container">
+        <div class="navbar bg-info navbar-inverse">
+            <div class="navbar-brand">Post tweets to twitter from here to the lecturer</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-xs-updated">
+                <h:form id="studentForm" styleClass="form-horizontal">
+                    <div class="form-group">
+                        <h:outputLabel value="Tweet message" style="color:black" styleClass="control-label col-sm-12" />
+                        <div class="col-md-12">
+                            <h:inputTextarea value="#{personcontroller.tweet.message}" styleClass="form-control" cols="30" rows="10" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+	                    <div class="row">
+	                    	<div class="col-sm-offset-3">
+	                            <h:commandButton value="Post tweet" action="#{personcontroller.createTweet()}" styleClass="btn btn-info" />
+	                        </div>
+	                        <br/>
+	                        <div class="col-sm-offset-3">
+	                            <h:commandButton value="View tweets" action="#{personcontroller.gotoViewTweets()}" styleClass="btn btn-danger" />
+	                        </div>
+	                    </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+    </h:body>
+</html>
